@@ -1,0 +1,16 @@
+# Root .htaccess
+# Use this when your document root is the project root (e.g. cPanel public_html).
+# Best practice: point your Apache DocumentRoot to the /public directory instead.
+
+# Block direct web access to sensitive directories and files.
+RedirectMatch 403 ^/(app|config|database|storage)(/.*)?$
+<FilesMatch "(^\.|\.(sql|md|log|ini|sh|json|lock)$)">
+    Require all denied
+</FilesMatch>
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    # Everything else is routed through the public/ front controller.
+    RewriteCond %{REQUEST_URI} !^/public/
+    RewriteRule ^(.*)$ /public/$1 [L]
+</IfModule>
