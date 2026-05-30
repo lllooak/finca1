@@ -100,6 +100,7 @@ batchInsert($pdo,'glossary_terms',['term','term_he','slug','letter','category','
 $log('Glossary: ' . count($rows));
 
 // ---------------- News ----------------
+require_once __DIR__ . '/../news_generator.php';
 $ncats = [['US Stocks','מניות ארה"ב'],['Hong Kong','הונג קונג'],['AI','בינה מלאכותית'],['Robotics','רובוטיקה'],['Semiconductors','מוליכים למחצה'],['ETF','קרנות סל'],['Bonds','אג"ח'],['Crypto','קריפטו'],['Commodities','סחורות'],['Macro','מאקרו'],['Federal Reserve','הפדרל ריזרב'],['China','סין']];
 $usedSlug = [];
 $rows = [];
@@ -113,11 +114,12 @@ $rows = [];
 for ($i = 0; $i < 110; $i++) {
     $cat = pick($ncatList);
     $title = pick($headlines) . ' - ' . date('d/m', strtotime('-'.rndi(0,120).' days')) . ' (' . ($i+1) . ')';
+    $article = generate_news_article($title, (string)$cat['name_he'], $i + 1);
     $rows[] = ['category_id'=>(int)$cat['id'],'title'=>$title,'slug'=>uslug($title,$usedSlug),
-        'summary'=>'סקירה תמציתית של ההתפתחויות בשוק וההשפעה הצפויה על המשקיעים.',
-        'content'=>'<p>בשוקי ההון נרשמה היום פעילות ערה. ' . str_repeat('המגמות בשוק משקפות את הציפיות של המשקיעים לגבי המשך המדיניות המוניטרית, נתוני המאקרו והתוצאות העסקיות של החברות המובילות. ', 5) . '</p><p>אנליסטים ממליצים למשקיעים לשמור על פיזור ולהיצמד לאסטרטגיה ארוכת טווח.</p>',
+        'summary'=>$article['summary'],
+        'content'=>$article['content'],
         'source'=>pick(['xbt Research','Market Wire','Global Finance','Reuters','Bloomberg']),'author'=>pick(['מערכת xbt','צוות אנליסטים']),
-        'tags'=>implode(',', array_map(fn($c)=>$c['name_he'], array_slice($ncatList,0,3))),
+        'tags'=>(function($list,$own){ $names=array_values(array_unique(array_map(fn($c)=>$c['name_he'],$list))); shuffle($names); $sel=[$own]; foreach($names as $nm){ if($nm!==$own){$sel[]=$nm;} if(count($sel)>=3)break; } return implode(',',$sel); })($ncatList,(string)$cat['name_he']),
         'is_featured'=>$i<6?1:0,'views'=>rndi(20,15000),
         'meta_title'=>$title,'meta_desc'=>'חדשות פיננסיות: '.$title,
         'status'=>1,'published_at'=>date('Y-m-d H:i:s', strtotime('-'.rndi(0,120).' days -'.rndi(0,23).' hours'))];
