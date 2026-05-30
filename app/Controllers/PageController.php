@@ -26,6 +26,20 @@ class PageController extends BaseController
         $this->render('page/contact');
     }
 
+    public function terms(array $params = []): void
+    {
+        $this->seo->set('תנאי שימוש', 'תנאי השימוש באתר xbt.co.il - כללי שימוש, היעדר אחריות, קניין רוחני ודין חל.');
+        $this->seo->addBreadcrumb('תנאי שימוש', SITE_URL . '/terms');
+        $this->render('page/terms');
+    }
+
+    public function privacy(array $params = []): void
+    {
+        $this->seo->set('מדיניות פרטיות', 'מדיניות הפרטיות של xbt.co.il - איסוף מידע, שימוש בעוגיות (Cookies) ואבטחת מידע.');
+        $this->seo->addBreadcrumb('מדיניות פרטיות', SITE_URL . '/privacy');
+        $this->render('page/privacy');
+    }
+
     public function faq(array $params = []): void
     {
         $this->seo->set('שאלות נפוצות', 'שאלות ותשובות נפוצות על השקעות, שוק ההון ושימוש באתר xbt.co.il.');

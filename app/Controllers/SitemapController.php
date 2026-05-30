@@ -64,7 +64,7 @@ class SitemapController extends BaseController
         ];
 
         if ($type === 'static') {
-            $paths = ['', 'stocks', 'etfs', 'bonds', 'indices', 'reits', 'crypto', 'commodities', 'currencies', 'sectors', 'industries', 'themes', 'countries', 'exchanges', 'screener', 'compare', 'guides', 'glossary', 'news', 'markets', 'about', 'disclaimer', 'faq'];
+            $paths = ['', 'stocks', 'etfs', 'bonds', 'indices', 'reits', 'crypto', 'commodities', 'currencies', 'sectors', 'industries', 'themes', 'countries', 'exchanges', 'screener', 'compare', 'guides', 'glossary', 'news', 'markets', 'about', 'disclaimer', 'contact', 'faq', 'terms', 'privacy'];
             return array_map(fn($p) => ['loc' => url($p), 'freq' => 'daily', 'priority' => $p === '' ? '1.0' : '0.8'], $paths);
         }
 

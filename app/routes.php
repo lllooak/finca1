@@ -111,6 +111,8 @@ $router->get('/about', [PageController::class, 'about']);
 $router->get('/disclaimer', [PageController::class, 'disclaimer']);
 $router->get('/contact', [PageController::class, 'contact']);
 $router->get('/faq', [PageController::class, 'faq']);
+$router->get('/terms', [PageController::class, 'terms']);
+$router->get('/privacy', [PageController::class, 'privacy']);
 
 // SEO
 $router->get('/sitemap.xml', [SitemapController::class, 'index']);
