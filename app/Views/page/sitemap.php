@@ -24,6 +24,15 @@
         <li><a href="<?= url('news') ?>">חדשות</a></li>
         <li><a href="<?= url('markets') ?>">סקירת שוק</a></li>
       </ul>
+      <h2 class="section-title mt-3">אודות ומשפטי</h2>
+      <ul class="list-unstyled">
+        <li><a href="<?= url('about') ?>">אודות האתר</a></li>
+        <li><a href="<?= url('faq') ?>">שאלות נפוצות</a></li>
+        <li><a href="<?= url('contact') ?>">צור קשר</a></li>
+        <li><a href="<?= url('disclaimer') ?>">גילוי נאות</a></li>
+        <li><a href="<?= url('terms') ?>">תנאי שימוש</a></li>
+        <li><a href="<?= url('privacy') ?>">מדיניות פרטיות</a></li>
+      </ul>
     </div>
     <div class="col-md-4 mb-4">
       <h2 class="section-title">סקטורים</h2>

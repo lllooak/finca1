@@ -118,6 +118,27 @@
     });
   };
 
+  // ---------- Cookie consent ----------
+  (function () {
+    var banner = document.getElementById('cookieConsent');
+    if (!banner) return;
+    var KEY = 'xbt_cookie_consent';
+    var stored;
+    try { stored = localStorage.getItem(KEY); } catch (e) { stored = 'accepted'; }
+    if (!stored) {
+      banner.hidden = false;
+      // allow CSS transition on next frame
+      requestAnimationFrame(function () { banner.classList.add('show'); });
+    }
+    banner.addEventListener('click', function (e) {
+      var btn = e.target.closest('[data-cookie]');
+      if (!btn) return;
+      try { localStorage.setItem(KEY, btn.getAttribute('data-cookie') === 'accept' ? 'accepted' : 'declined'); } catch (err) {}
+      banner.classList.remove('show');
+      setTimeout(function () { banner.hidden = true; }, 300);
+    });
+  })();
+
   // Auto-init charts declared via data attributes
   document.querySelectorAll('[data-chart]').forEach(function (el) {
     try {

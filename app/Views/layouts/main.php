@@ -22,6 +22,19 @@
 
 <?= \App\Core\View::partial('partials/footer') ?>
 
+<div id="cookieConsent" class="cookie-consent" role="dialog" aria-live="polite" aria-label="הסכמה לשימוש בעוגיות" hidden>
+  <div class="container cookie-consent-inner">
+    <p class="cookie-consent-text">
+      אנו משתמשים בעוגיות (Cookies) כדי להפעיל את האתר, לשמור את העדפותיך ולשפר את חוויית הגלישה.
+      המשך השימוש באתר מהווה הסכמה למדיניות זו. למידע נוסף ראו <a href="<?= url('privacy') ?>">מדיניות הפרטיות</a>.
+    </p>
+    <div class="cookie-consent-actions">
+      <button type="button" class="btn btn-sm btn-outline-light" data-cookie="decline">דחייה</button>
+      <button type="button" class="btn btn-sm btn-primary" data-cookie="accept">אישור</button>
+    </div>
+  </div>
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 <script src="<?= asset('js/app.js') ?>"></script>

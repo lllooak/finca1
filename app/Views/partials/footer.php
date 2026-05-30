@@ -42,6 +42,8 @@
           <li><a href="<?= url('disclaimer') ?>">גילוי נאות</a></li>
           <li><a href="<?= url('contact') ?>">צור קשר</a></li>
           <li><a href="<?= url('sitemap') ?>">מפת אתר</a></li>
+          <li><a href="<?= url('terms') ?>">תנאי שימוש</a></li>
+          <li><a href="<?= url('privacy') ?>">מדיניות פרטיות</a></li>
         </ul>
       </div>
     </div>
